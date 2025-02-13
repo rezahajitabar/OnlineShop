@@ -1,23 +1,25 @@
-const usernameValidation = (username) => {
-  const regex = /^[a-zA-Zd_]{4,8}/;
+const validationUsername = (username) => {
+  const regex = /^[a-zA-Z\d_]{4,16}$/;
   return regex.test(username);
-};
-const passwordValidation = (password) => {
-  const regex = /^[a-zA-Z\d_^]{4,8}/;
+}
+
+const validationPassword = (password) => {
+  const regex = /^.{4,16}$/;
   return regex.test(password);
-};
+}
 
-const formValidation = (username, password) => {
-  const usernameResult = usernameValidation(username);
-  const passwordResult = passwordValidation(password);
-  if (usernameResult && passwordResult) {
-    return true;
-  } else if (!usernameResult) {
-    return alert("username not found");
-  } else if (!passwordResult) {
-    return alert("password not found");
+const validationForm = (username, password) => {
+  if (!validationUsername(username)) {
+      alert("Invalid username");
+      return false;
+  } 
+  
+  if (!validationPassword(password)) {
+      alert("Invalid password");
+      return false;
   }
-};
 
+  return true;
+}
 
-export default formValidation;
+export { validationForm };
