@@ -5,7 +5,9 @@ export async function postData(path, data) {
         const response = await fetch(`${BASE_URL}${path}`, {
             method: "POST",
             body: JSON.stringify(data),
-            headers: { "Content-Type": "application/json" }
+            headers: {
+                "Content-Type": "application/json"
+            }
         });
 
         // بررسی اینکه آیا پاسخ JSON است
@@ -22,3 +24,15 @@ export async function postData(path, data) {
         throw error;
     }
 }
+
+const getData = async (path) => {
+    try {
+        const response = await fetch(`${BASE_URL}/${path}`);
+        const json = await response.json();
+        return json;
+    } catch (error) {
+        alert("error");
+    }
+}
+
+export{getData}
